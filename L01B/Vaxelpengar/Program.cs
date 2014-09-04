@@ -135,7 +135,6 @@ namespace Vaxelpengar_1
             uint uiRoundedTotal = 0;
             double dRoundedMoney;
             uint uiChange;
-            bool bSkrivKvitto = false;
             ConsoleKeyInfo cki;
 
             do

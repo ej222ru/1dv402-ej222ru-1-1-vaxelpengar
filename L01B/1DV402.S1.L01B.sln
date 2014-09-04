@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaxelpengar", "Vaxelpengar\Vaxelpengar.csproj", "{EC5769B1-8148-40AB-B7CA-CC6AE52470F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L01B", "Vaxelpengar\L01B.csproj", "{EC5769B1-8148-40AB-B7CA-CC6AE52470F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
