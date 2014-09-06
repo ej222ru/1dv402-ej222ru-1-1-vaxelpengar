@@ -59,5 +59,50 @@ namespace Vaxelpengar {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ange erhållet belopp: .
+        /// </summary>
+        internal static string Cash_Prompt {
+            get {
+                return ResourceManager.GetString("Cash_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tryck tangent för ny beräkning - ESC avslutar..
+        /// </summary>
+        internal static string Continue_Prompt {
+            get {
+                return ResourceManager.GetString("Continue_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FEL! &apos;{0}&apos; kan inte tolkas som en giltig summa pengar..
+        /// </summary>
+        internal static string ErrInvalidSum_Prompt {
+            get {
+                return ResourceManager.GetString("ErrInvalidSum_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FEL! &apos;{0}&apos; är ett för litet belopp..
+        /// </summary>
+        internal static string ErrSmallAmount_Prompt {
+            get {
+                return ResourceManager.GetString("ErrSmallAmount_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ange totalsumma     : .
+        /// </summary>
+        internal static string TotalCost_Prompt {
+            get {
+                return ResourceManager.GetString("TotalCost_Prompt", resourceCulture);
+            }
+        }
     }
 }
