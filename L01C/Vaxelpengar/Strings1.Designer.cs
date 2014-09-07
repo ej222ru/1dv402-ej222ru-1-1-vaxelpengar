@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vaxelpengar {
+namespace CalcChange {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Vaxelpengar {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Vaxelpengar.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CalcChange.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -81,18 +81,18 @@ namespace Vaxelpengar {
         /// <summary>
         ///   Looks up a localized string similar to FEL! &apos;{0}&apos; kan inte tolkas som en giltig summa pengar..
         /// </summary>
-        internal static string ErrInvalidSum_Prompt {
+        internal static string ErrorInvalidSum {
             get {
-                return ResourceManager.GetString("ErrInvalidSum_Prompt", resourceCulture);
+                return ResourceManager.GetString("ErrorInvalidSum", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to FEL! &apos;{0}&apos; är ett för litet belopp..
         /// </summary>
-        internal static string ErrSmallAmount_Prompt {
+        internal static string ErrorSmallAmount {
             get {
-                return ResourceManager.GetString("ErrSmallAmount_Prompt", resourceCulture);
+                return ResourceManager.GetString("ErrorSmallAmount", resourceCulture);
             }
         }
         

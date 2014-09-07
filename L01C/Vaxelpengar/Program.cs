@@ -6,20 +6,13 @@ using System.Threading.Tasks;
 using System.Resources;
 using System.Reflection;
 
-namespace Vaxelpengar
+namespace CalcChange
 {
 	class calcChange
 	{
 		static ResourceManager rm;
 
-		private static void writeErrorInput(string sInput)
-		{
-			Console.WriteLine("");
-			Console.BackgroundColor = ConsoleColor.Red;
-			Console.WriteLine(calcChange.rm.GetString("ErrInvalidSum_Prompt"), sInput);
-			Console.BackgroundColor = ConsoleColor.Black;
-			Console.WriteLine("");
-		}
+
 
 		private static void viewMessage(string sMessage, bool bIsError = false)
 		{
@@ -71,7 +64,7 @@ namespace Vaxelpengar
 		{
 			double dValue = 0;
 			int iRoundedValue = 0;
-			string s = "";
+			string sInput = "";
 
 			do
 			{
@@ -80,17 +73,17 @@ namespace Vaxelpengar
 
 				try
 				{
-					s = Console.ReadLine();
-					dValue = double.Parse(s);
+					sInput = Console.ReadLine();
+					dValue = double.Parse(sInput);
 					iRoundedValue = (int)Math.Round(dValue);
 					if (iRoundedValue < 1)
 					{
-						writeErrorInput(s);
+						viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
 					}
 				}
 				catch 
 				{
-					writeErrorInput(s);
+					viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
 				}
 			}
 			while (iRoundedValue < 1);
@@ -100,7 +93,7 @@ namespace Vaxelpengar
 
 		private static uint ReadUint(string sText, uint uiMinValue)
 		{
-			string s = "";
+			string sInput = "";
 			uint uiReceivedAmount = 0;
 			do
 			{
@@ -108,21 +101,17 @@ namespace Vaxelpengar
 				{
 					Console.Write(sText);
 
-					s = Console.ReadLine();
-					uiReceivedAmount = uint.Parse(s);
+					sInput = Console.ReadLine();
+					uiReceivedAmount = uint.Parse(sInput);
 
 					if (uiReceivedAmount < uiMinValue)
 					{
-						Console.WriteLine("");
-						Console.BackgroundColor = ConsoleColor.Red;
-						Console.WriteLine(calcChange.rm.GetString("ErrSmallAmount_Prompt"), uiReceivedAmount);
-						Console.BackgroundColor = ConsoleColor.Black;
-						Console.WriteLine("");
+						viewMessage(string.Format(calcChange.rm.GetString("ErrorSmallAmount"), sInput), true);
 					}
 				}
 				catch
 				{
-					writeErrorInput(s);
+					viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
 				}
 			}
 			while (uiReceivedAmount < uiMinValue);
@@ -159,10 +148,10 @@ namespace Vaxelpengar
 			ConsoleKeyInfo cki;
 			uint[] uiDenomination = new uint[] { 500, 100, 50, 20, 10, 5, 1 };
 
+			rm = new ResourceManager("CalcChange.Strings", Assembly.GetExecutingAssembly());
 			do
 			{
 				// Create a resource manager to retrieve resources.
-				rm = new ResourceManager("Vaxelpengar.Strings", Assembly.GetExecutingAssembly());
 
 				dTotal = ReadPositiveDouble(rm.GetString("TotalCost_Prompt"));
 				uiRoundedTotal = (uint)Math.Round(dTotal);

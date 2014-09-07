@@ -7,7 +7,7 @@
     <ProjectGuid>{EC5769B1-8148-40AB-B7CA-CC6AE52470F7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vaxelpengar</RootNamespace>
+    <RootNamespace>CalcChange</RootNamespace>
     <AssemblyName>Vaxelpengar</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

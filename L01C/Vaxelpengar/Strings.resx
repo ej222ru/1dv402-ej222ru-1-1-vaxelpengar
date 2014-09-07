@@ -123,10 +123,10 @@
   <data name="Continue_Prompt" xml:space="preserve">
     <value>Tryck tangent för ny beräkning - ESC avslutar.</value>
   </data>
-  <data name="ErrInvalidSum_Prompt" xml:space="preserve">
+  <data name="ErrorInvalidSum" xml:space="preserve">
     <value>FEL! '{0}' kan inte tolkas som en giltig summa pengar.</value>
   </data>
-  <data name="ErrSmallAmount_Prompt" xml:space="preserve">
+  <data name="ErrorSmallAmount" xml:space="preserve">
     <value>FEL! '{0}' är ett för litet belopp.</value>
   </data>
   <data name="TotalCost_Prompt" xml:space="preserve">
