@@ -11,6 +11,7 @@ namespace _1DV402.S1L02C
 	class drawDiamond	
 	{
 		static ResourceManager rm;
+		const int MAX_ASTERISK = 79;
 
 		private static void viewMessage(string sMessage, bool bIsError = false)
 		{
@@ -31,7 +32,7 @@ namespace _1DV402.S1L02C
 			do
 			{
 
-				byWaist = ReadOddByte(rm.GetString("OddNumberAsterisk_Prompt"), 79);
+				byWaist = ReadOddByte(rm.GetString("OddNumberAsterisk_Prompt"), MAX_ASTERISK);
 				RenderDiamond(byWaist);
 
 
