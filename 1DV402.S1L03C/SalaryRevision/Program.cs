@@ -81,23 +81,35 @@ namespace SalaryRevision
 		}
 		private static void ViewResult(int[] salaries)
 		{
+
+			int iMedian = salaries.Median();
+
+
+			int iDispersion = salaries.Dispersion();
+
 		}
 
 
 	}
 
-/*
-	class MyExtensions
+
+	static class MyExtensions
 	{
 
 		public static int Dispersion(this int[] source)
 		{
+			int iRet = 0;
+
+			return iRet;
 		}
 
 		public static int Median(this int[] source)
 		{
+			int iMedian = 0;
+
+			return iMedian;
 		}
 		
 	}
- */ 
+
 }
