@@ -32,7 +32,7 @@ namespace _1DV402.S1L02C
 			do
 			{
 
-				byWaist = ReadOddByte(rm.GetString("OddNumberAsterisk_Prompt"), MAX_ASTERISK);
+				byWaist = ReadOddByte(rm.GetString("NoOfSalaries_Prompt"));
 				RenderDiamond(byWaist);
 
 
