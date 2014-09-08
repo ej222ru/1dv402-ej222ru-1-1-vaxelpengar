@@ -124,6 +124,6 @@
     <value>FEL! Det inmatade värdet är inte ett udda tal mellan 1 och {0}.</value>
   </data>
   <data name="OddNumberAsterisk_Prompt" xml:space="preserve">
-    <value>Ange det udda antalet asterisker (max {0}) i diamantens midja:</value>
+    <value>Ange det udda antalet asterisker (max {0}) i diamantens midja: </value>
   </data>
 </root>

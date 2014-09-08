@@ -82,14 +82,28 @@ namespace _1DV402.S1L02C
 
 		private static void RenderDiamond(byte byMaxCount)
 		{
+			for (int i = 0; i < (byMaxCount - 1) / 2; i++)	// Upper half, start with one * and finish 
+				RenderRow(byMaxCount, i * 2 + 1);				// with byMaxCount minus one on each side
 
+			RenderRow(byMaxCount, byMaxCount);					// middle row, all *
+
+			for (int i = (byMaxCount - 1) / 2; i > 0; i--)	// lower half, start with byMaxCount minus one on each side
+				RenderRow(byMaxCount, i * 2 - 1);				// and finish with just one in the middle
 		}
 
 
 
 		private static void RenderRow(int iMaxCount, int iAsteriskCount)
 		{
+			int iIndex = (iMaxCount - iAsteriskCount) / 2;	// How many spaces before first *
 
+			for (int i = 0; i < iIndex; i++)						// step spaces			
+				Console.Write(" ");
+
+			for (int i = iIndex; i < iIndex + iAsteriskCount; i++)	// draw calculated number of *, given as parameter
+				Console.Write("*");
+
+			Console.WriteLine();		// line feed
 		}
 
 

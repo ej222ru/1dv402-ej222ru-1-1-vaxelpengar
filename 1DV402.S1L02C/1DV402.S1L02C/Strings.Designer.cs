@@ -79,7 +79,7 @@ namespace _1DV402.S1L02C {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ange det udda antalet asterisker (max {0}) i diamantens midja:.
+        ///   Looks up a localized string similar to Ange det udda antalet asterisker (max {0}) i diamantens midja: .
         /// </summary>
         internal static string OddNumberAsterisk_Prompt {
             get {
