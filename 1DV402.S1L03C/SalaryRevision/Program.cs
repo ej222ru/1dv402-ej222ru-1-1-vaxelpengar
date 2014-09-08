@@ -53,12 +53,12 @@ namespace SalaryRevision
 
 					if (iRet < 3)
 					{
-						viewMessage(rm.GetString("Error2_Message"));
+						viewMessage(rm.GetString("Error2_Message"), ConsoleColor.Red);
 					}
 				}
 				catch
 				{
-					viewMessage(string.Format(rm.GetString("Error_Message"), iRet));
+					viewMessage(string.Format(rm.GetString("Error_Message"), iRet), ConsoleColor.Red);
 				}
 
 			} while (iRet < 3);
@@ -67,23 +67,26 @@ namespace SalaryRevision
 
 		private static int[] ReadSalaries(int count)
 		{
-			int[] iaSalaries = 0;
-
+			int[] iaSalaries = new int[count];
+			for (int i=0; i<count; i++)
+			{
+				Console.Write(string.Format(rm.GetString("Salary_Prompt"), i));
+				iaSalaries[i] = int.Parse(Console.ReadLine());
+			}
 
 			return iaSalaries;
 		}
-		private static void viewMessage(ConsoleColor backgroundColor = ConsoleColor.Blue, ConsoleColor foregroundColor = ConsoleColor.White)
+		private static void viewMessage(string message, ConsoleColor backgroundColor = ConsoleColor.Blue, ConsoleColor foregroundColor = ConsoleColor.White)
 		{
 		}
 		private static void ViewResult(int[] salaries)
 		{
 		}
-		private static int ReadInt(string prompt)
-		{
-		}
+
 
 	}
 
+/*
 	class MyExtensions
 	{
 
@@ -96,4 +99,5 @@ namespace SalaryRevision
 		}
 		
 	}
+ */ 
 }
