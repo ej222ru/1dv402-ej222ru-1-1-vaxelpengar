@@ -65,7 +65,7 @@ namespace _1DV402.S1L02C
 					sInput = Console.ReadLine();
 					byWaist = byte.Parse(sInput);
 
-					if (byWaist > byMaxValue)
+					if ((byWaist > byMaxValue) || ((byWaist % 2) != 1))
 					{
 						viewMessage(string.Format(drawDiamond.rm.GetString("Error_Message"), byMaxValue), true);
 					}
@@ -75,7 +75,7 @@ namespace _1DV402.S1L02C
 					viewMessage(string.Format(drawDiamond.rm.GetString("Error_Message"), byMaxValue), true);
 				}
 			}
-			while (byWaist > byMaxValue);
+			while ((byWaist > byMaxValue) || ((byWaist % 2) != 1));
 			return byWaist;	
 
 		}
