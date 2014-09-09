@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +8,13 @@ using System.Threading.Tasks;
 using System.Resources;
 using System.Reflection;
 
+
 namespace CalcChange
 {
 	class calcChange
 	{
+		// Declare a resource manager to retrieve resources in all class methods.
 		static ResourceManager rm;
-
-
 
 		private static void viewMessage(string sMessage, bool bIsError = false)
 		{
@@ -29,37 +31,40 @@ namespace CalcChange
 		private static void viewReceipt(double dSubtotal, double dRoundingOfAmount, uint uiTotal, uint uiCash, uint uiChange, uint[] uiNotes, uint[] uiDenominations)
 		{
 			Console.WriteLine("");
-			Console.WriteLine("KVITTO");
-			Console.WriteLine("-------------------------------");
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}",  "Totalt", dSubtotal));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}",  "Öresavrundning", dRoundingOfAmount));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", "Att betala", uiTotal));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", "Kontant", uiCash));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", "Tillbaka", uiChange));
-			Console.WriteLine("-------------------------------"); 
+			Console.WriteLine(calcChange.rm.GetString("Receipt_text"));
+			Console.WriteLine(calcChange.rm.GetString("Divider_string"));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}", calcChange.rm.GetString("Total_text"), dSubtotal));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}", calcChange.rm.GetString("Rounding_text"), dRoundingOfAmount));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Payable_text"), uiTotal));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Cash_text"), uiCash));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Change_text"), uiChange));
+			Console.WriteLine(calcChange.rm.GetString("Divider_string")); 
 			Console.WriteLine("");
 
-			string sDenomText = "";
+//			string sDenomText = "";
 			uint uiCount = 0;
 			foreach (uint element in uiDenominations)
 			{
 				if (uiNotes[uiCount] > 0)
 				{
 					if (element > 10)
-						sDenomText = "-lappar       :";
+						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Notes_text"), uiNotes[uiCount]));
+
+
+//						sDenomText = "-lappar       :";
 					else
-						sDenomText = "-kronor       :";
+						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Coin_text"), uiNotes[uiCount]));
+	//					sDenomText = "-kronor       :";
 
-					Console.Write("{0,3}", element);
-					Console.Write(sDenomText);
+	//				Console.Write("{0,3}", element);
+		//			Console.Write(sDenomText);
 
-					System.Console.WriteLine(" {0}", uiNotes[uiCount]);
+			//		System.Console.WriteLine(" {0}", uiNotes[uiCount]);
 				}
 				uiCount++;
 			}
 		}
 		 
-
 		private static double ReadPositiveDouble(string sText)
 		{
 			double dValue = 0;
@@ -80,7 +85,7 @@ namespace CalcChange
 					{
 						viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
 					}
-				}
+				}						
 				catch 
 				{
 					viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
@@ -148,11 +153,11 @@ namespace CalcChange
 			ConsoleKeyInfo cki;
 			uint[] uiDenomination = new uint[] { 500, 100, 50, 20, 10, 5, 1 };
 
+			// Create a resource manager to retrieve resources.
 			rm = new ResourceManager("CalcChange.Strings", Assembly.GetExecutingAssembly());
+
 			do
 			{
-				// Create a resource manager to retrieve resources.
-
 				dTotal = ReadPositiveDouble(rm.GetString("TotalCost_Prompt"));
 				uiRoundedTotal = (uint)Math.Round(dTotal);
 				uiMoneyReceived = ReadUint(rm.GetString("Cash_Prompt"), uiRoundedTotal);

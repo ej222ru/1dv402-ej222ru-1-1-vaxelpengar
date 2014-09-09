@@ -15,6 +15,7 @@ namespace SalaryRevision
 		static void Main(string[] args)
 		{
 			rm = new ResourceManager("SalaryRevision.Strings", Assembly.GetExecutingAssembly());
+
 			int iNoOfSalaries = 0;
 			int[] iaSalaries;
 			do
@@ -82,10 +83,12 @@ namespace SalaryRevision
 		private static void ViewResult(int[] salaries)
 		{
 
-			int iMedian = salaries.Median();
+//			int iMedian = salaries.Median();
 
-
-			int iDispersion = salaries.Dispersion();
+			Double dAverage = salaries.Average();
+	
+			
+//			int iDispersion = salaries.Dispersion();
 
 		}
 

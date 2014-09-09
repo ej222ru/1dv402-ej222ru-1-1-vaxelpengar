@@ -32,7 +32,7 @@ namespace _1DV402.S1L02C
 			do
 			{
 
-				byWaist = ReadOddByte(rm.GetString("NoOfSalaries_Prompt"));
+				byWaist = ReadOddByte(rm.GetString("OddNumberAsterisk_Prompt"));
 				RenderDiamond(byWaist);
 
 
@@ -52,7 +52,7 @@ namespace _1DV402.S1L02C
 
 		}
 
-		private static byte ReadOddByte(string sPrompt = null, byte byMaxValue = 255)
+		private static byte ReadOddByte(string sPrompt = null, byte byMaxValue = MAX_ASTERISK)
 		{
 
 			string sInput = "";

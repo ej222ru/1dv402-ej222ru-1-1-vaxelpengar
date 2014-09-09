@@ -120,8 +120,20 @@
   <data name="Cash_Prompt" xml:space="preserve">
     <value>Ange erhållet belopp: </value>
   </data>
+  <data name="Cash_text" xml:space="preserve">
+    <value>Kontant</value>
+  </data>
+  <data name="Change_text" xml:space="preserve">
+    <value>Tillbaka</value>
+  </data>
+  <data name="Coin_text" xml:space="preserve">
+    <value>-kronor</value>
+  </data>
   <data name="Continue_Prompt" xml:space="preserve">
     <value>Tryck tangent för ny beräkning - ESC avslutar.</value>
+  </data>
+  <data name="Divider_string" xml:space="preserve">
+    <value>-------------------------------</value>
   </data>
   <data name="ErrorInvalidSum" xml:space="preserve">
     <value>FEL! '{0}' kan inte tolkas som en giltig summa pengar.</value>
@@ -129,7 +141,22 @@
   <data name="ErrorSmallAmount" xml:space="preserve">
     <value>FEL! '{0}' är ett för litet belopp.</value>
   </data>
+  <data name="Notes_text" xml:space="preserve">
+    <value>-lappar</value>
+  </data>
+  <data name="Payable_text" xml:space="preserve">
+    <value>Att betala</value>
+  </data>
+  <data name="Receipt_text" xml:space="preserve">
+    <value>KVITTO</value>
+  </data>
+  <data name="Rounding_text" xml:space="preserve">
+    <value>Öresavrundning</value>
+  </data>
   <data name="TotalCost_Prompt" xml:space="preserve">
     <value>Ange totalsumma     : </value>
+  </data>
+  <data name="Total_text" xml:space="preserve">
+    <value>Totalt</value>
   </data>
 </root>
