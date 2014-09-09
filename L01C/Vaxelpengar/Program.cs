@@ -41,7 +41,6 @@ namespace CalcChange
 			Console.WriteLine(calcChange.rm.GetString("Divider_string")); 
 			Console.WriteLine("");
 
-//			string sDenomText = "";
 			uint uiCount = 0;
 			foreach (uint element in uiDenominations)
 			{
@@ -49,17 +48,8 @@ namespace CalcChange
 				{
 					if (element > 10)
 						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Notes_text"), uiNotes[uiCount]));
-
-
-//						sDenomText = "-lappar       :";
-					else
+				else
 						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Coin_text"), uiNotes[uiCount]));
-	//					sDenomText = "-kronor       :";
-
-	//				Console.Write("{0,3}", element);
-		//			Console.Write(sDenomText);
-
-			//		System.Console.WriteLine(" {0}", uiNotes[uiCount]);
 				}
 				uiCount++;
 			}
