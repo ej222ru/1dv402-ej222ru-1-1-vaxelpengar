@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AverageSalary_Text" xml:space="preserve">
+    <value>Medellön: </value>
+  </data>
   <data name="Continue_Prompt" xml:space="preserve">
     <value>Tryck tangent för ny beräkning - ESC avslutar.</value>
+  </data>
+  <data name="Divider_String" xml:space="preserve">
+    <value>-----------------------------------------</value>
   </data>
   <data name="Error2_Message" xml:space="preserve">
     <value>Du måste mata in minst två löner för att kunna göra en beräkning!</value>
@@ -129,9 +135,6 @@
   <data name="MedianSalary_Text" xml:space="preserve">
     <value>Medianlön: </value>
   </data>
-  <data name="MediumSalary_Text" xml:space="preserve">
-    <value>Medellön: </value>
-  </data>
   <data name="NoOfSalaries_Prompt" xml:space="preserve">
     <value>Ange antal löner att mata in: </value>
   </data>
@@ -139,6 +142,6 @@
     <value>Lönespridning: </value>
   </data>
   <data name="Salary_Prompt" xml:space="preserve">
-    <value>Ange lön nummer {0} : </value>
+    <value>Ange lön nummer {0} :</value>
   </data>
 </root>
