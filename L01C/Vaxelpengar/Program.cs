@@ -16,146 +16,146 @@ namespace CalcChange
 		// Declare a resource manager to retrieve resources in all class methods.
 		static ResourceManager rm;
 
-		private static void viewMessage(string sMessage, bool bIsError = false)
+		private static void viewMessage(string message, bool isError = false)
 		{
 			Console.WriteLine("");
-			if (bIsError)
+			if (isError)
 				Console.BackgroundColor = ConsoleColor.Red;
 			else
 				Console.BackgroundColor = ConsoleColor.Green;
-			Console.WriteLine(sMessage);
+			Console.WriteLine(message);
 			Console.BackgroundColor = ConsoleColor.Black;
 			Console.WriteLine("");
 		}
 
-		private static void viewReceipt(double dSubtotal, double dRoundingOfAmount, uint uiTotal, uint uiCash, uint uiChange, uint[] uiNotes, uint[] uiDenominations)
+		private static void viewReceipt(double subtotal, double roundingOfAmount, uint total, uint cash, uint change, uint[] noOfDenomination, uint[] denominations)
 		{
 			Console.WriteLine("");
 			Console.WriteLine(calcChange.rm.GetString("Receipt_text"));
 			Console.WriteLine(calcChange.rm.GetString("Divider_string"));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}", calcChange.rm.GetString("Total_text"), dSubtotal));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}", calcChange.rm.GetString("Rounding_text"), dRoundingOfAmount));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Payable_text"), uiTotal));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Cash_text"), uiCash));
-			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Change_text"), uiChange));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}", calcChange.rm.GetString("Total_text"), subtotal));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c}", calcChange.rm.GetString("Rounding_text"), roundingOfAmount));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Payable_text"), total));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Cash_text"), cash));
+			Console.WriteLine(String.Format("{0,-17}:{1, 13:c0}", calcChange.rm.GetString("Change_text"), change));
 			Console.WriteLine(calcChange.rm.GetString("Divider_string")); 
 			Console.WriteLine("");
 
-			uint uiCount = 0;
-			foreach (uint element in uiDenominations)
+			uint index = 0;
+			foreach (uint element in denominations)
 			{
-				if (uiNotes[uiCount] > 0)
+				if (noOfDenomination[index] > 0)
 				{
 					if (element > 10)
-						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Notes_text"), uiNotes[uiCount]));
+						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Notes_text"), noOfDenomination[index]));
 				else
-						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Coin_text"), uiNotes[uiCount]));
+						Console.WriteLine(String.Format("{0,3}{1, -14}: {2}", element, calcChange.rm.GetString("Coin_text"), noOfDenomination[index]));
 				}
-				uiCount++;
+				index++;
 			}
 		}
 		 
-		private static double ReadPositiveDouble(string sText)
+		private static double ReadPositiveDouble(string prompt)
 		{
-			double dValue = 0;
-			int iRoundedValue = 0;
-			string sInput = "";
+			double value = 0;
+			int roundedValue = 0;
+			string input = "";
 
 			do
 			{
-				iRoundedValue = 0;
-				Console.Write(sText);
+				roundedValue = 0;
+				Console.Write(prompt);
 
 				try
 				{
-					sInput = Console.ReadLine();
-					dValue = double.Parse(sInput);
-					iRoundedValue = (int)Math.Round(dValue);
-					if (iRoundedValue < 1)
+					input = Console.ReadLine();
+					value = double.Parse(input);
+					roundedValue = (int)Math.Round(value);
+					if (roundedValue < 1)
 					{
-						viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
+						viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), input), true);
 					}
 				}						
 				catch 
 				{
-					viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
+					viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), input), true);
 				}
 			}
-			while (iRoundedValue < 1);
+			while (roundedValue < 1);
 
-			return dValue;
+			return value;
 		}
 
-		private static uint ReadUint(string sText, uint uiMinValue)
+		private static uint ReadUint(string text, uint minValue)
 		{
-			string sInput = "";
-			uint uiReceivedAmount = 0;
+			string input = "";
+			uint receivedAmount = 0;
 			do
 			{
 				try
 				{
-					Console.Write(sText);
+					Console.Write(text);
 
-					sInput = Console.ReadLine();
-					uiReceivedAmount = uint.Parse(sInput);
+					input = Console.ReadLine();
+					receivedAmount = uint.Parse(input);
 
-					if (uiReceivedAmount < uiMinValue)
+					if (receivedAmount < minValue)
 					{
-						viewMessage(string.Format(calcChange.rm.GetString("ErrorSmallAmount"), sInput), true);
+						viewMessage(string.Format(calcChange.rm.GetString("ErrorSmallAmount"), input), true);
 					}
 				}
 				catch
 				{
-					viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), sInput), true);
+					viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), input), true);
 				}
 			}
-			while (uiReceivedAmount < uiMinValue);
-			return uiReceivedAmount;
+			while (receivedAmount < minValue);
+			return receivedAmount;
 		}
 
-		private static uint[] SplitIntoDenominations(uint uiChange, uint[] uiDenomination)
+		private static uint[] SplitIntoDenominations(uint change, uint[] denomination)
 		{
-			uint[] uiDenominationCount = new uint[] { 0, 0, 0, 0, 0, 0, 0 };
-			uint uiRest = uiChange;
-			uint uiNumber = 0;
-			uint uiCount = 0;
-			foreach (uint element in uiDenomination)
+			uint[] denominationCount = new uint[] { 0, 0, 0, 0, 0, 0, 0 };
+			uint rest = change;
+			uint numberOfDenomination = 0;
+			uint index = 0;
+			foreach (uint element in denomination)
 			{
-				uiNumber = uiRest / element;
-				uiRest = uiRest % element;
+				numberOfDenomination = rest / element;
+				rest = rest % element;
 
-				if (uiNumber > 0)
+				if (numberOfDenomination > 0)
 				{
-					uiDenominationCount[uiCount] = uiNumber;
+					denominationCount[index] = numberOfDenomination;
 				}
-				uiCount++;
+				index++;
 			}
-			return uiDenominationCount;
+			return denominationCount;
 		}
 
 		static void Main(string[] args)
 		{
-			double dTotal = 0;
-			uint uiMoneyReceived = 0;
-			uint uiRoundedTotal = 0;
-			double dRoundedMoney;
-			uint uiChange;
+			double total = 0;
+			uint moneyReceived = 0;
+			uint roundedTotal = 0;
+			double roundedMoney;
+			uint change;
 			ConsoleKeyInfo cki;
-			uint[] uiDenomination = new uint[] { 500, 100, 50, 20, 10, 5, 1 };
+			uint[] denomination = new uint[] { 500, 100, 50, 20, 10, 5, 1 };
 
 			// Create a resource manager to retrieve resources.
 			rm = new ResourceManager("CalcChange.Strings", Assembly.GetExecutingAssembly());
 
 			do
 			{
-				dTotal = ReadPositiveDouble(rm.GetString("TotalCost_Prompt"));
-				uiRoundedTotal = (uint)Math.Round(dTotal);
-				uiMoneyReceived = ReadUint(rm.GetString("Cash_Prompt"), uiRoundedTotal);
+				total = ReadPositiveDouble(rm.GetString("TotalCost_Prompt"));
+				roundedTotal = (uint)Math.Round(total);
+				moneyReceived = ReadUint(rm.GetString("Cash_Prompt"), roundedTotal);
 
-				dRoundedMoney = uiRoundedTotal - dTotal;
-				uiChange = uiMoneyReceived - uiRoundedTotal;
+				roundedMoney = roundedTotal - total;
+				change = moneyReceived - roundedTotal;
 
-				viewReceipt(dTotal, dRoundedMoney, uiRoundedTotal, uiMoneyReceived, uiChange, SplitIntoDenominations(uiChange, uiDenomination), uiDenomination);
+				viewReceipt(total, roundedMoney, roundedTotal, moneyReceived, change, SplitIntoDenominations(change, denomination), denomination);
 
 				Console.WriteLine("");
 				Console.BackgroundColor = ConsoleColor.Green;
