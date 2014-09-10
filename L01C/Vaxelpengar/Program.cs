@@ -15,7 +15,11 @@ namespace CalcChange
 	{
 		// Declare a resource manager to retrieve resources in all class methods.
 		static ResourceManager rm;
-
+		/// <summary>
+		/// kalle anka
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="isError"></param>
 		private static void viewMessage(string message, bool isError = false)
 		{
 			Console.WriteLine("");
@@ -85,7 +89,7 @@ namespace CalcChange
 
 			return value;
 		}
-
+		 
 		private static uint ReadUint(string text, uint minValue)
 		{
 			string input = "";
@@ -164,6 +168,7 @@ namespace CalcChange
 				cki = Console.ReadKey(true);
 				Console.WriteLine("");
 				// or should the screen be cleared???   Console.Clear();
+				
 			} while (cki.Key != ConsoleKey.Escape);
 		}
     }
