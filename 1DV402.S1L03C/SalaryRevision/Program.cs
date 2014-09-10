@@ -16,13 +16,13 @@ namespace SalaryRevision
 		{
 			rm = new ResourceManager("SalaryRevision.Strings", Assembly.GetExecutingAssembly());
 
-			int iNoOfSalaries = 0;
-			int[] iaSalaries;
+			int noOfSalaries = 0;
+			int[] salaries;
 			do
 			{
-				iNoOfSalaries = ReadInt(rm.GetString("NoOfSalaries_Prompt"));
-				iaSalaries = ReadSalaries(iNoOfSalaries);
-				ViewResult(iaSalaries);
+				noOfSalaries = ReadInt(rm.GetString("NoOfSalaries_Prompt"));
+				salaries = ReadSalaries(noOfSalaries);
+				ViewResult(salaries);
 
 			} while (IsContinuing());
 
@@ -44,26 +44,26 @@ namespace SalaryRevision
 
 		private static int ReadInt(string prompt)
 		{
-			int iRet = 0;
+			int ret = 0;
 			do
 			{
 				try
 				{
 					Console.Write(prompt);
-					iRet = int.Parse(Console.ReadLine());
+					ret = int.Parse(Console.ReadLine());
 
-					if (iRet < 3)
+					if (ret < 3)
 					{
 						viewMessage(rm.GetString("Error2_Message"), ConsoleColor.Red);
 					}
 				}
 				catch
 				{
-					viewMessage(string.Format(rm.GetString("Error_Message"), iRet), ConsoleColor.Red);
+					viewMessage(string.Format(rm.GetString("Error_Message"), ret), ConsoleColor.Red);
 				}
 
-			} while (iRet < 3);
-			return iRet;
+			} while (ret < 3);
+			return ret;
 		}
 
 		private static int[] ReadSalaries(int count)
@@ -77,13 +77,21 @@ namespace SalaryRevision
 
 			return iaSalaries;
 		}
+
 		private static void viewMessage(string message, ConsoleColor backgroundColor = ConsoleColor.Blue, ConsoleColor foregroundColor = ConsoleColor.White)
 		{
+			Console.WriteLine("");
+			Console.BackgroundColor = backgroundColor;
+			Console.ForegroundColor = foregroundColor;
+			Console.WriteLine(message);
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.WriteLine("");
 		}
+
 		private static void ViewResult(int[] salaries)
 		{
 
-//			int iMedian = salaries.Median();
+			int median = salaries.Median();
 
 			Double dAverage = salaries.Average();
 	
@@ -101,16 +109,25 @@ namespace SalaryRevision
 
 		public static int Dispersion(this int[] source)
 		{
-			int iRet = 0;
-
-			return iRet;
+			int ret = 0;
+			int maxValue = source.Max();
+			int minValue = source.Min();
+			return ret = maxValue - minValue;
 		}
 
 		public static int Median(this int[] source)
 		{
-			int iMedian = 0;
-
-			return iMedian;
+			int median = 0;
+			int[] sortedSurce = source;
+			Array.Sort(sortedSurce);
+			int noOfElements = sortedSurce.Length;
+			if ((noOfElements % 2) == 0)
+			{
+				// even numbers, caluculate median as an average of the two
+			}
+			else
+				median = sortedSurce[noOfElements/2];   // index of array starts at 0
+			return median;
 		}
 		
 	}
