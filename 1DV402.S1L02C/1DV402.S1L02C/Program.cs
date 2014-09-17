@@ -45,7 +45,6 @@ namespace _1DV402.S1L02C
 		/// <returns>The odd number entered by the user.</returns>
 		private static byte ReadOddByte(string prompt = null, byte maxWaist = MAX_ASTERISK)
 		{
-			string input = "";
 			byte waist = 0;
 			do
 			{
