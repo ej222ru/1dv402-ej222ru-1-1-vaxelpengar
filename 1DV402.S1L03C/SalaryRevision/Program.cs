@@ -42,12 +42,14 @@ namespace SalaryRevision
 		private static int ReadInt(string prompt)
 		{
 			int ret = 0;
+			string input=""; 
 			do
 			{
 				try
 				{
 					Console.Write(prompt);
-					ret = int.Parse(Console.ReadLine());
+					input = Console.ReadLine();
+					ret = int.Parse(input);
 
 					if (ret < 2)
 					{
@@ -56,7 +58,7 @@ namespace SalaryRevision
 				}
 				catch
 				{
-					viewMessage(string.Format(rm.GetString("Error_Message"), ret), ConsoleColor.Red);
+					viewMessage(string.Format(rm.GetString("Error_Message"), input), ConsoleColor.Red);
 				}
 			} while (ret < 2);
 			return ret;
@@ -67,8 +69,7 @@ namespace SalaryRevision
 			int[] iaSalaries = new int[count];
 			for (int i=0; i<count; i++)
 			{
-				Console.Write(string.Format(rm.GetString("Salary_Prompt"), i+1));
-				iaSalaries[i] = int.Parse(Console.ReadLine());
+				iaSalaries[i] = ReadInt(string.Format(rm.GetString("Salary_Prompt"), i + 1));
 			}
 			return iaSalaries;
 		}
@@ -105,7 +106,7 @@ namespace SalaryRevision
 			for (int i=0; i<rows; i++)
 			{
 				Console.WriteLine(String.Format("{0,8}{1,8}{2,8}", salaries[item], salaries[item+1], salaries[item+2]));
-				item +=2;
+				item +=3;
 			}
 			if (lastRow > 0)
 			{
