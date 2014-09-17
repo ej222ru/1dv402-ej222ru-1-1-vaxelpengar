@@ -14,7 +14,6 @@ namespace _1DV402.S1L02C
 		static ResourceManager rm;
 		const int MAX_ASTERISK = 79;
 	
-
 		static void Main(string[] args)
 		{
 			// Create a resource manager to retrieve resources.
@@ -33,12 +32,8 @@ namespace _1DV402.S1L02C
 		/// <returns>Returns true if user input is anything but ESC</returns>
 		private static bool IsContinuing()
 		{ 
-			Console.WriteLine("");
-			Console.BackgroundColor = ConsoleColor.Green;
-			Console.WriteLine(rm.GetString("Continue_Prompt"));
-			Console.BackgroundColor = ConsoleColor.Black; 
+			ViewMessage(rm.GetString("Continue_Prompt"), false);
 			ConsoleKeyInfo cki = Console.ReadKey(true);
-			Console.WriteLine("");
 			Console.Clear();
 			return (cki.Key != ConsoleKey.Escape);
 		}
@@ -57,10 +52,9 @@ namespace _1DV402.S1L02C
 				try
 				{
 					Console.Write(prompt, maxWaist);
+					waist = byte.Parse(Console.ReadLine());
 
-					input = Console.ReadLine();
-					waist = byte.Parse(input);
-
+					// Check input (waist) is less or equal than max value and odd	
 					if ((waist > maxWaist) || ((waist % 2) != 1))
 					{
 						ViewMessage(string.Format(DrawDiamond.rm.GetString("Error_Message"), maxWaist), true);
@@ -71,21 +65,22 @@ namespace _1DV402.S1L02C
 					ViewMessage(string.Format(DrawDiamond.rm.GetString("Error_Message"), maxWaist), true);
 				}
 			}
-			while ((waist > maxWaist) || ((waist % 2) != 1));
+			while ((waist > maxWaist) || ((waist % 2) != 1));	// keep going until a valid value is entered 
 			return waist;	
 		}
 		/// <summary>
 		/// Calculates and draws a diamond shaped figure on screen.
+		/// Prameter maxWaist describes the waist size of the diamond i.e. how broad it is
 		/// </summary>
 		/// <param name="maxWaist"></param>
 		private static void RenderDiamond(byte maxWaist)
 		{
 			for (int i = 0; i < (maxWaist - 1) / 2; i++)	// Upper half, start with one * and finish 
-				RenderRow(maxWaist, i * 2 + 1);				// with byMaxCount minus one on each side
+				RenderRow(maxWaist, i * 2 + 1);				// with maxCount minus one on each side
 
 			RenderRow(maxWaist, maxWaist);					// middle row, all *
 
-			for (int i = (maxWaist - 1) / 2; i > 0; i--)	// lower half, start with byMaxCount minus one on each side
+			for (int i = (maxWaist - 1) / 2; i > 0; i--)	// lower half, start with maxCount minus one on each side
 				RenderRow(maxWaist, i * 2 - 1);				// and finish with just one in the middle
 		}
 		/// <summary>
@@ -109,8 +104,8 @@ namespace _1DV402.S1L02C
 			Console.WriteLine();		// line feed
 		}
 		/// <summary>
-		/// Prints a message on the screen. 
-		/// Backgorund color is red if determined to be an error (second parameter), otherwise gree background color.
+		/// Prints a message given as a parameter on the screen. 
+		/// Backgorund color is red if determined to be an error (second parameter), otherwise dark green background color.
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="isError"></param>
@@ -120,11 +115,10 @@ namespace _1DV402.S1L02C
 			if (isError)
 				Console.BackgroundColor = ConsoleColor.Red;
 			else
-				Console.BackgroundColor = ConsoleColor.Green;
+				Console.BackgroundColor = ConsoleColor.DarkGreen;
 			Console.WriteLine(message);
 			Console.BackgroundColor = ConsoleColor.Black;
 			Console.WriteLine("");
 		}
-
 	}
 }

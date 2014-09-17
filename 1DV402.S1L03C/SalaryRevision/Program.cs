@@ -32,13 +32,10 @@ namespace SalaryRevision
 
 		private static bool IsContinuing()
 		{
-			Console.WriteLine("");
-			Console.BackgroundColor = ConsoleColor.Blue;
-			Console.WriteLine(rm.GetString("Continue_Prompt"));
-			Console.BackgroundColor = ConsoleColor.Black;
+			viewMessage(rm.GetString("Continue_Prompt"));
 			ConsoleKeyInfo cki = Console.ReadKey(true);
 			Console.WriteLine("");
-			// or should the screen be cleared???   Console.Clear();
+			Console.Clear();
 			return (cki.Key != ConsoleKey.Escape);
 		}
 

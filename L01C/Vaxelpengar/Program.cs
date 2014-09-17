@@ -11,6 +11,7 @@ using System.Reflection;
 
 namespace CalcChange
 {
+	
 	class calcChange
 	{
 		// Declare a resource manager to retrieve resources in all class methods.
@@ -59,8 +60,9 @@ namespace CalcChange
 			}
 		}
 		 
-		private static double ReadPositiveDouble(string prompt)
+		private double ReadPositiveDouble(string prompt)
 		{
+			Exception MyException = new Exception();
 			double value = 0;
 			int roundedValue = 0;
 			string input = "";
@@ -77,7 +79,8 @@ namespace CalcChange
 					roundedValue = (int)Math.Round(value);
 					if (roundedValue < 1)
 					{
-						viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), input), true);
+						throw (MyException);
+						//viewMessage(string.Format(calcChange.rm.GetString("ErrorInvalidSum"), input), true);
 					}
 				}						
 				catch 
