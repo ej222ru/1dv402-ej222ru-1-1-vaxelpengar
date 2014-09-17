@@ -28,17 +28,22 @@ namespace SalaryRevision
 
 			} while (IsContinuing());
 		}
-
-
+		/// <summary>
+		/// Prints a message and expects a key respons from the user.
+		/// </summary>
+		/// <returns>Returns true if user input is anything but ESC</returns>
 		private static bool IsContinuing()
 		{
 			viewMessage(rm.GetString("Continue_Prompt"));
 			ConsoleKeyInfo cki = Console.ReadKey(true);
-			Console.WriteLine("");
 			Console.Clear();
 			return (cki.Key != ConsoleKey.Escape);
 		}
-
+		/// <summary>
+		/// Read input from user/screen which must be an integer.
+		/// </summary>
+		/// <param name="prompt"></param>
+		/// <returns></returns>
 		private static int ReadInt(string prompt)
 		{
 			int ret = 0;
@@ -63,7 +68,12 @@ namespace SalaryRevision
 			} while (ret < 2);
 			return ret;
 		}
-
+		/// <summary>
+		/// Reads the number of salaries previously given by the user.
+		/// Salaries must be given as integer values
+		/// </summary>
+		/// <param name="count"></param>
+		/// <returns></returns>
 		private static int[] ReadSalaries(int count)
 		{
 			int[] iaSalaries = new int[count];
@@ -83,7 +93,11 @@ namespace SalaryRevision
 			Console.BackgroundColor = ConsoleColor.Black;
 			Console.WriteLine("");
 		}
-
+		/// <summary>
+		/// Displays calculated values for median, average and dispersion for the salaries given as an integer array parameter.
+		/// Also displays the salaries in the parameter
+		/// </summary>
+		/// <param name="salaries"></param>
 		private static void ViewResult(int[] salaries)
 		{
 			int median = salaries.Median();
@@ -106,12 +120,12 @@ namespace SalaryRevision
 			for (int i=0; i<rows; i++)
 			{
 				Console.WriteLine(String.Format("{0,8}{1,8}{2,8}", salaries[item], salaries[item+1], salaries[item+2]));
-				item +=3;
+				item +=2;
 			}
 			if (lastRow > 0)
 			{
 				if (lastRow == 1)
-					Console.WriteLine(String.Format("{0,8}", salaries[item]));
+					Console.WriteLine(String.Format("{0,8}", salaries[item+1]));
 				else if (lastRow == 2)
 					Console.WriteLine(String.Format("{0,8}{1,8}", salaries[item+1], salaries[item+2]));
 			}
@@ -120,7 +134,11 @@ namespace SalaryRevision
 
 	static class MyExtensions
 	{
-
+		/// <summary>
+		/// Calculates dispersion for given values in the integer array parameter
+		/// </summary>
+		/// <param name="source"></param>
+		/// <returns></returns>
 		public static int Dispersion(this int[] source)
 		{
 			int ret = 0;
@@ -128,12 +146,18 @@ namespace SalaryRevision
 			int minValue = source.Min();
 			return ret = maxValue - minValue;
 		}
-
+		/// <summary>
+		/// Calculates median for given values in the integer array parameter
+		/// </summary>
+		/// <param name="source"></param>
+		/// <returns></returns>
 		public static int Median(this int[] source)
 		{
 			int median = 0;
 			int noOfElements = source.Length;
 			int[] sortedSource = new int[noOfElements];
+			// Input parameter source must not be altered. 
+			// Create a copy of the array to do the math
 			Array.Copy(source, sortedSource, source.Length);
 			Array.Sort(sortedSource);
 
